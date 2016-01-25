@@ -7,3 +7,23 @@ def count_brute(A):
                 count+=1
     return count
 
+#An example run of mergesort
+#[1,3,5,2,4,6] (3 inv)
+#
+#Left      Right
+#[1,3,5]   [2,4,6]
+#       |
+#               |
+#Apply mergesort!
+#
+#[1,2,3,4,5]
+#(3,2) and (5,2) 
+#(5,4)
+
+
+
+
+
+
+
+

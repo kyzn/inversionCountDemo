@@ -20,6 +20,47 @@ def count_brute(A):
 #(3,2) and (5,2) 
 #(5,4)
 
+#Mergesort function
+def mergesort(A):
+    if len(A)<=1:
+        return A
+    else:
+        mid=len(A)//2
+        left  = A[:mid]
+        right = A[mid:]
+        
+        left  = mergesort(left)
+        right = mergesort(right)        
+        result= merge(left,right)
+        
+        return result
+        
+#merge function to help mergesort
+def merge(L,R):
+    result=[]
+    while len(L)>0 and len(R)>0:
+        if(L[0]<=R[0]):
+            result.append(L[0])
+            L=L[1:]
+        else:
+            result.append(R[0])
+            R=R[1:]
+    
+    while len(L)>0:
+        result.append(L[0])
+        L=L[1:]
+            
+    while len(R)>0:
+        result.append(R[0])
+        R=R[1:]
+            
+    return result
+    
+        
+
+
+
+
 
 
 

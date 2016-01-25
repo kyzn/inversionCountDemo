@@ -1,3 +1,8 @@
+import numpy as np
+import scipy
+from matplotlib import pyplot
+
+
 #Count inversions by brute force
 def count_brute(A):    
     count = 0    
@@ -64,6 +69,17 @@ def merge_and_count(L,R):
         R=R[1:]
             
     return (result,counter)
+    
+    
+
+
+#TIMING AND PLOTTING
+
+
+
+
+
+
     
         
 

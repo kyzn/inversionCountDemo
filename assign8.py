@@ -1,7 +1,7 @@
 import numpy as np
 import scipy
-from matplotlib import pyplot
-
+from matplotlib import pyplot as plt
+import timeit
 
 #Count inversions by brute force
 def count_brute(A):    
@@ -74,20 +74,32 @@ def merge_and_count(L,R):
 
 
 #TIMING AND PLOTTING
+brute_results=[]
+merge_results=[]
 
+size_of_input = range(0,1000,10)
 
-
-
-
-
+for a in size_of_input:
+    A = np.arange(a)
+    A = np.random.permutation(A)    
+    t1 = timeit.Timer(lambda: count_brute(A))
+    t2 = timeit.Timer(lambda: mergesort_and_count(A))
     
-        
+    brute_result = t1.repeat(repeat=3,number=1)
+    brute_result = scipy.mean(brute_result)
+    brute_results.append(brute_result)
+    
+    merge_result = t2.repeat(repeat=3,number=1)
+    merge_result = scipy.mean(merge_result)
+    merge_results.append(merge_result)
+    
 
+plt.figure()
+plt.plot(size_of_input,brute_results,label="Brute Force")
+plt.plot(size_of_input,merge_results,label="Mergesort")
+plt.legend()
 
-
-
-
-
-
-
-
+plt.xlabel("Size of input")
+plt.ylabel("Time (s)")
+plt.title("Counting Number of Inversions")
+plt.show()

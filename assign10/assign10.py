@@ -9,9 +9,10 @@ def brute_count(A):
     return count
 
 
-#Mergesort helper function:
-def merge(L,R):
+#Mergesort_and_count helper function:
+def merge_and_count(L,R):
     result=[]
+    count=0
     while len(L)>0 and len(R)>0:
         if L[0]<=R[0]:
             result.append(L[0])
@@ -19,24 +20,36 @@ def merge(L,R):
         else:
             result.append(R[0])
             R=R[1:]
+            count+=len(L)
     while len(L)>0:
         result.append(L[0])
         L=L[1:]
     while len(R)>0:
         result.append(R[0])
         R=R[1:]
-    return result
+    return (result,count)
 
 
 #Mergesort function
-def mergesort(A):
+#It also counts for inversions
+def mergesort_and_count(A):
     if len(A)<=1:
-        return A
+        return (A,0)
     else:
         middle=len(A)//2
         left = A[:middle]
         right= A[middle:]
-        left = mergesort(left)
-        right= mergesort(right)
-        result= merge(left,right)
-        return result
+        
+        left_count=0
+        right_count=0
+        split_count=0
+        
+        (left,left_count)   = mergesort_and_count(left)
+        (right,right_count) = mergesort_and_count(right)
+        (result,split_count)= merge_and_count(left,right)
+        total_count = left_count + right_count + split_count         
+        return (result,total_count)
+
+
+
+

@@ -6,6 +6,4 @@ def brute_count(A):
             if (A[i]>A[j]):
                 count+=1
     return count
-
-#new changes here
-#blablabla
+    
